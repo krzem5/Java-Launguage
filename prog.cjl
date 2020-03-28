@@ -1,0 +1,8 @@
+import *math;
+import line_alg;
+print();
+
+
+
+line_alg.line(0,0,int(random()*49+1),int(random()*49+1));
+

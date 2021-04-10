@@ -15,6 +15,7 @@ public class Error{
 
 
 
+	@Override
 	public String toString(){
 		return "Error:\n"+this.S.toString()+"\n"+this.m+"\n";
 	}

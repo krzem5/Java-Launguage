@@ -64,12 +64,14 @@ public class CallStack{
 
 
 
+	@Override
 	public CallStack clone(){
 		return new CallStack(this.S);
 	}
 
 
 
+	@Override
 	public String toString(){
 		String s="";
 		String rp=null;

@@ -72,7 +72,7 @@ public class Variable{
 
 
 	public static VInt new_(String name,String type,int value,boolean is_const){
-		if (type!="int"){
+		if (!type.equals("int")){
 			System.err.println("!!!Not matching!!!>VInt");
 			return null;
 		}
@@ -83,7 +83,7 @@ public class Variable{
 
 
 	public static VFloat new_(String name,String type,float value,boolean is_const){
-		if (type!="float"){
+		if (!type.equals("float")){
 			System.err.println("!!!Not matching!!!>VFloat");
 			return null;
 		}
@@ -94,7 +94,7 @@ public class Variable{
 
 
 	public static VString new_(String name,String type,String value,boolean is_const){
-		if (type!="string"){
+		if (!type.equals("string")){
 			System.err.println("!!!Not matching!!!>VString");
 			return null;
 		}
@@ -105,7 +105,7 @@ public class Variable{
 
 
 	public static VBool new_(String name,String type,boolean value,boolean is_const){
-		if (type!="bool"){
+		if (!type.equals("bool")){
 			System.err.println("!!!Not matching!!!>VBool");
 			return null;
 		}

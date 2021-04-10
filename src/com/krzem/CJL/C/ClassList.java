@@ -23,6 +23,7 @@ public class ClassList{
 
 
 
+	@Override
 	public ClassList clone(){
 		ClassList cl=new ClassList();
 		for (Class c:this.Cl){

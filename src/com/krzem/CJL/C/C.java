@@ -170,7 +170,7 @@ public class C{
 		int M=C.M_NONE;
 		int i=0;
 		while (i<seq.length()){
-			if (seq.charAt(i)==C.QUOTE_CHAR&&((i==0)||(i>0&&seq.charAt(i-1)!=C.QUOTE_ESCAPE_CHAR))){
+			if (seq.charAt(i)==C.QUOTE_CHAR&&((i==0)||(seq.charAt(i-1)!=C.QUOTE_ESCAPE_CHAR))){
 				if (M==C.M_NONE){
 					M=C.M_STRING;
 				}
@@ -247,7 +247,6 @@ public class C{
 		int li=-1;
 		int LT=C.LT_NONE;
 		int M=C.M_NONE;
-		ArrayList<String> BR=new ArrayList<String>();
 		while (true){
 			if (i>=seq.length()){
 				break;
@@ -447,7 +446,7 @@ public class C{
 							if (seq.charAt(i)==C.LINE_BREAK_CHAR){
 								li++;
 							}
-							i++;	
+							i++;
 						}
 						if (seq.charAt(i)!=C.IF_DEF_START_CHAR){
 							i=si;
@@ -562,7 +561,7 @@ public class C{
 						if (seq.charAt(i)==C.FOR_DEF_END_CHAR){
 							b--;
 						}
-						if (seq.charAt(i)==C.QUOTE_CHAR&&((j==0)||(j>0&&cd.get(2).charAt(j)!=C.QUOTE_ESCAPE_CHAR))){
+						if (seq.charAt(i)==C.QUOTE_CHAR&&((j==0)||(cd.get(2).charAt(j)!=C.QUOTE_ESCAPE_CHAR))){
 							if (M==C.M_NONE){
 								M=C.M_STRING;
 							}
@@ -749,7 +748,6 @@ public class C{
 				i+=3+frt.length();
 				if (seq.substring(i).startsWith(C.FUNC_DEF_STRING)){
 					i+=C.FUNC_DEF_STRING.length();
-					int sli=li+1;
 					if (C.ALLOWED_FUNC_NAME_START_CHARS.indexOf(String.valueOf(seq.charAt(i)))==-1){
 						String c=String.valueOf(seq.charAt(i-1)).replace(String.valueOf(C.LINE_BREAK_CHAR),"\\n").replace(String.valueOf(C.TAB_CHAR),"\\t");
 						S.set_last(S.get_last_path(),li+1,"");
@@ -1339,7 +1337,7 @@ public class C{
 				if (seq.charAt(i)==C.LINE_BREAK_CHAR){
 					li++;
 				}
-				LT=C.LT_NONE; 
+				LT=C.LT_NONE;
 			}
 			i++;
 		}
@@ -1715,7 +1713,7 @@ public class C{
 			rt_l.add(t2);
 			COMPILED_SEQ=COMPILED_SEQ.substring(0,COMPILED_SEQ.length()-1)+"],";
 		}
-		if (RT!=null&!((rt_l.size()==1&&rt_l.get(0)==null)||(rt_l.size()>1))){
+		if (RT!=null&&!((rt_l.size()>1)||(rt_l.get(0)==null))){
 			String l1="";
 			if (RT.size()>=1&&RT.get(0)!=""){
 				for (String s:RT){
@@ -1729,7 +1727,7 @@ public class C{
 				l1=l1.substring(0,l1.length()-2);
 			}
 			String l2="";
-			if (sl.size()>=1&&sl.get(0)!=""){
+			if (sl.size()>=1&&!sl.get(0).equals("")){
 				for (String s:rt_l){
 					if (s.length()==0){
 						l2+="<any>, ";
@@ -1791,7 +1789,7 @@ public class C{
 			if (seq.charAt(i)==C.COND_CLOSE_BRACKETS){
 				b--;
 			}
-			if (seq.charAt(i)==C.QUOTE_CHAR&&((i==0)||(i>0&&seq.charAt(i-1)!=C.QUOTE_ESCAPE_CHAR))){
+			if (seq.charAt(i)==C.QUOTE_CHAR&&((i==0)||(seq.charAt(i-1)!=C.QUOTE_ESCAPE_CHAR))){
 				if (M==C.M_NONE){
 					M=C.M_STRING;
 				}
@@ -1800,7 +1798,7 @@ public class C{
 				}
 			}
 			if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_AND_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0]==""){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_AND_CHAR+"'",S).toString();
 				}
 				i+=C.COND_AND_CHAR.length();
@@ -1809,7 +1807,7 @@ public class C{
 				c.add("E");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_OR_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0]==""){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_OR_CHAR+"'",S).toString();
 				}
 				i+=C.COND_OR_CHAR.length();
@@ -1818,42 +1816,42 @@ public class C{
 				c.add("E");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_EQ_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0]==""){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_EQ_CHAR+"'",S).toString();
 				}
 				i+=C.COND_EQ_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_EQ_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_NOT_EQ_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0]==""){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_NOT_EQ_CHAR+"'",S).toString();
 				}
 				i+=C.COND_NOT_EQ_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_NOT_EQ_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_NOT_LESS_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0]==""){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_NOT_LESS_CHAR+"'",S).toString();
 				}
 				i+=C.COND_NOT_LESS_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_NOT_LESS_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_NOT_MORE_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0]==""){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_NOT_MORE_CHAR+"'",S).toString();
 				}
 				i+=C.COND_NOT_MORE_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_NOT_MORE_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_LESS_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0]==""){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_LESS_CHAR+"'",S).toString();
 				}
 				i+=C.COND_LESS_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_LESS_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_MORE_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0]==""){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_MORE_CHAR+"'",S).toString();
 				}
 				i+=C.COND_MORE_CHAR.length();

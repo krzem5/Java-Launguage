@@ -72,6 +72,7 @@ public class VariableList{
 
 
 
+	@Override
 	public VariableList clone(){
 		VariableList vl=new VariableList();
 		for (Variable.VInt v:this.VIl){

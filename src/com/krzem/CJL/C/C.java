@@ -1715,7 +1715,7 @@ public class C{
 		}
 		if (RT!=null&&!((rt_l.size()>1)||(rt_l.get(0)==null))){
 			String l1="";
-			if (RT.size()>=1&&RT.get(0)!=""){
+			if (RT.size()>=1&&RT.get(0).length()!=0){
 				for (String s:RT){
 					if (s.equals("object")){
 						l1+="<any>, ";
@@ -1727,7 +1727,7 @@ public class C{
 				l1=l1.substring(0,l1.length()-2);
 			}
 			String l2="";
-			if (sl.size()>=1&&!sl.get(0).equals("")){
+			if (sl.size()>=1&&!sl.get(0).length()==0){
 				for (String s:rt_l){
 					if (s.length()==0){
 						l2+="<any>, ";
@@ -1798,7 +1798,7 @@ public class C{
 				}
 			}
 			if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_AND_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].length()==0){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_AND_CHAR+"'",S).toString();
 				}
 				i+=C.COND_AND_CHAR.length();
@@ -1807,7 +1807,7 @@ public class C{
 				c.add("E");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_OR_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].length()==0){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_OR_CHAR+"'",S).toString();
 				}
 				i+=C.COND_OR_CHAR.length();
@@ -1816,42 +1816,42 @@ public class C{
 				c.add("E");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_EQ_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].length()==0){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_EQ_CHAR+"'",S).toString();
 				}
 				i+=C.COND_EQ_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_EQ_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_NOT_EQ_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].length()==0){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_NOT_EQ_CHAR+"'",S).toString();
 				}
 				i+=C.COND_NOT_EQ_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_NOT_EQ_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_NOT_LESS_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].length()==0){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_NOT_LESS_CHAR+"'",S).toString();
 				}
 				i+=C.COND_NOT_LESS_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_NOT_LESS_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_NOT_MORE_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].length()==0){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_NOT_MORE_CHAR+"'",S).toString();
 				}
 				i+=C.COND_NOT_MORE_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_NOT_MORE_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_LESS_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].length()==0){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_LESS_CHAR+"'",S).toString();
 				}
 				i+=C.COND_LESS_CHAR.length();
 				c.set(ci,c.get(ci)+"~E{\"t\":\""+C.COND_LESS_CHAR+"\"}~");
 			}
 			else if (M==C.M_NONE&&b==0&&seq.substring(i).startsWith(C.COND_MORE_CHAR)){
-				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].equals("")){
+				if (c.get(ci).split("~").length==1&&c.get(ci).split("~")[0].length()==0){
 					return new UnexpectedCharacterError("Expected a condition, found '"+C.COND_MORE_CHAR+"'",S).toString();
 				}
 				i+=C.COND_MORE_CHAR.length();

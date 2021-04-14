@@ -1727,7 +1727,7 @@ public class C{
 				l1=l1.substring(0,l1.length()-2);
 			}
 			String l2="";
-			if (sl.size()>=1&&!sl.get(0).length()==0){
+			if (sl.size()>=1&&sl.get(0).length()==0){
 				for (String s:rt_l){
 					if (s.length()==0){
 						l2+="<any>, ";

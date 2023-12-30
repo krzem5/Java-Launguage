@@ -110,6 +110,7 @@ public class Function{
 	}
 
 
+
 	public static class FBool{
 		public static final String r_type="bool";
 		public String name;
@@ -143,6 +144,7 @@ public class Function{
 	}
 
 
+
 	public static class FVoid{
 		public static final String r_type="void";
 		public String name;
@@ -155,7 +157,7 @@ public class Function{
 			this.name=name;
 			this.params=params;
 		}
-		
+
 
 
 		public ArrayList<String> param_list(){
